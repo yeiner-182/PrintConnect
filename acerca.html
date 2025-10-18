@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrintConnect - Acerca de Nosotros</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo-svg.svg" alt="PrintConnect Logo">
+                PrintConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="acerca.html">Acerca de nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contáctanos</a>
+                    </li>
+                    <li class="nav-item" id="downloadNavItem" style="display:none;">
+                        <a class="nav-link" href="descargas.html">Descargas</a>
+                    </li>
+                    <li class="nav-item" id="authButtons">
+                        <a href="login.html" class="btn btn-login">Iniciar Sesión</a>
+                        <a href="registro.html" class="btn btn-register">Registrarse</a>
+                    </li>
+                    <li class="nav-item hidden" id="userSection">
+                        <span class="user-welcome me-3" id="userName"></span>
+                        <button class="btn btn-login" id="logoutBtn">Cerrar Sesión</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">Acerca de PrintConnect</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="about-content">
+                        <p>PrintConnect nació de la necesidad de simplificar y optimizar la gestión de impresión en entornos empresariales y domésticos. Nuestro equipo de desarrolladores y diseñadores trabajó arduamente para crear una solución que combine potencia y simplicidad.</p>
+                        
+                        <h4 class="mt-5 mb-3 about-subtitle">Nuestra Misión</h4>
+                        <p>Democratizar el acceso a tecnología de gestión de impresión inteligente, haciendo que sea accesible para todos, desde pequeñas empresas hasta grandes corporaciones.</p>
+                        
+                        <h4 class="mt-5 mb-3 about-subtitle">Nuestra Visión</h4>
+                        <p>Convertirnos en el estándar de la industria para la gestión de impresión, ofreciendo innovación continua y el mejor soporte al cliente.</p>
+                        
+                        <h4 class="mt-5 mb-3 about-subtitle">Nuestros Valores</h4>
+                        <div class="row g-4 mt-3">
+                            <div class="col-md-6">
+                                <div class="value-card">
+                                    <div class="value-icon">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </div>
+                                    <h5>Innovación</h5>
+                                    <p>Constantemente mejoramos nuestra tecnología para estar a la vanguardia.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="value-card">
+                                    <div class="value-icon">
+                                        <i class="fas fa-hand-holding-heart"></i>
+                                    </div>
+                                    <h5>Simplicidad</h5>
+                                    <p>Herramientas poderosas con interfaces intuitivas y fáciles de usar.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="value-card">
+                                    <div class="value-icon">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <h5>Seguridad</h5>
+                                    <p>Tu privacidad y seguridad son nuestra máxima prioridad.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="value-card">
+                                    <div class="value-icon">
+                                        <i class="fas fa-headset"></i>
+                                    </div>
+                                    <h5>Soporte</h5>
+                                    <p>Estamos aquí para ayudarte en cada paso del camino.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mt-5 mb-3 about-subtitle">Nuestro Equipo</h4>
+                        <p>Contamos con un equipo multidisciplinario de profesionales apasionados por la tecnología y la innovación. Desde ingenieros de software hasta diseñadores UX/UI, todos trabajamos con un objetivo común: mejorar tu experiencia de impresión.</p>
+                        
+                        <div class="stats-section mt-5">
+                            <div class="row text-center">
+                                <div class="col-md-3 col-6 mb-4">
+                                    <div class="stat-card">
+                                        <h3 class="stat-number">10K+</h3>
+                                        <p class="stat-label">Usuarios Activos</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-4">
+                                    <div class="stat-card">
+                                        <h3 class="stat-number">50+</h3>
+                                        <p class="stat-label">Países</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-4">
+                                    <div class="stat-card">
+                                        <h3 class="stat-number">99.9%</h3>
+                                        <p class="stat-label">Uptime</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-4">
+                                    <div class="stat-card">
+                                        <h3 class="stat-number">24/7</h3>
+                                        <p class="stat-label">Soporte</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">PrintConnect</h5>
+                    <p>La solución definitiva para gestión de impresión inteligente. Optimiza, programa y controla todas tus impresiones desde un solo lugar.</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Producto</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Características</a></li>
+                        <li><a href="descargas.html">Descargas</a></li>
+                        <li><a href="#">Precios</a></li>
+                        <li><a href="#">Actualizaciones</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Empresa</h5>
+                    <ul class="footer-links">
+                        <li><a href="acerca.html">Acerca de</a></li>
+                        <li><a href="#">Carreras</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Prensa</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Soporte</h5>
+                    <ul class="footer-links">
+                        <li><a href="contacto.html">Contáctanos</a></li>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Documentación</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Legal</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Términos de Uso</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">Licencias</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 PrintConnect. Todos los derechos reservados. | Desarrollado con <i class="fas fa-heart" style="color: #e74c3c;"></i> en Medellín, Colombia</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/models/User.js"></script>
+    <script src="js/models/UserRepository.js"></script>
+    <script src="js/services/AuthService.js"></script>
+    <script src="js/services/UIService.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+    <!-- Impresora (parte superior) -->
+    <rect fill="#0D4A4A" width="165" height="90" x="30" y="60" rx="15"/>
+    
+    <!-- Impresora (parte principal) -->
+    <rect fill="#0D4A4A" width="180" height="150" x="15" y="105" rx="15"/>
+    
+    <!-- Papel saliendo -->
+    <rect fill="#F5F2E8" width="105" height="90" x="45" y="135" rx="9"/>
+    
+    <!-- Líneas del papel -->
+    <line stroke="#0D4A4A" stroke-width="9" x1="66" y1="165" x2="129" y2="165"/>
+    <line stroke="#0D4A4A" stroke-width="9" x1="66" y1="186" x2="129" y2="186"/>
+    <line stroke="#0D4A4A" stroke-width="9" x1="66" y1="207" x2="129" y2="207"/>
+    
+    <!-- Símbolo de conexión (círculo superior) -->
+    <circle fill="none" stroke="#1B7FA8" stroke-width="15" cx="210" cy="105" r="36"/>
+    
+    <!-- Símbolo de conexión (círculo inferior) -->
+    <circle fill="none" stroke="#1B7FA8" stroke-width="15" cx="240" cy="165" r="36"/>
+    
+    <!-- Línea de conexión entre círculos -->
+    <path fill="none" stroke="#1B7FA8" stroke-width="15" d="M210 105 L240 165"/>
+</svg>

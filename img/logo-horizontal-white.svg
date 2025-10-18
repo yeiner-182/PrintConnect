@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120">
+    <!-- Impresora (parte superior) -->
+    <rect fill="#FFFFFF" width="55" height="30" x="10" y="25" rx="5"/>
+    
+    <!-- Impresora (parte principal) -->
+    <rect fill="#FFFFFF" width="60" height="50" x="5" y="40" rx="5"/>
+    
+    <!-- Papel saliendo -->
+    <rect fill="#0D4A4A" width="35" height="30" x="15" y="50" rx="3"/>
+    
+    <!-- Líneas del papel -->
+    <line stroke="#FFFFFF" stroke-width="3" x1="22" y1="60" x2="43" y2="60"/>
+    <line stroke="#FFFFFF" stroke-width="3" x1="22" y1="67" x2="43" y2="67"/>
+    <line stroke="#FFFFFF" stroke-width="3" x1="22" y1="74" x2="43" y2="74"/>
+    
+    <!-- Símbolo de conexión (círculo superior) -->
+    <circle fill="none" stroke="#1B7FA8" stroke-width="5" cx="70" cy="40" r="12"/>
+    
+    <!-- Símbolo de conexión (círculo inferior) -->
+    <circle fill="none" stroke="#1B7FA8" stroke-width="5" cx="80" cy="60" r="12"/>
+    
+    <!-- Línea de conexión entre círculos -->
+    <path fill="none" stroke="#1B7FA8" stroke-width="5" d="M70 40 L80 60"/>
+    
+    <!-- Texto PrintConnect en blanco -->
+    <text x="105" y="70" font-family="'Segoe UI', Arial, sans-serif" font-size="40" font-weight="700" fill="#FFFFFF">PrintConnect</text>
+</svg>

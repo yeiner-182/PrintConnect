@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <!-- Fondo -->
+    <rect fill="#0D4A4A" width="32" height="32" rx="4"/>
+    
+    <!-- Impresora simplificada -->
+    <rect fill="#F5F2E8" width="18" height="12" x="3" y="8" rx="2"/>
+    <rect fill="#1B7FA8" width="10" height="6" x="7" y="11" rx="1"/>
+    
+    <!-- Líneas del papel -->
+    <line stroke="#0D4A4A" stroke-width="1.5" x1="9" y1="13" x2="15" y2="13"/>
+    <line stroke="#0D4A4A" stroke-width="1.5" x1="9" y1="15" x2="15" y2="15"/>
+    
+    <!-- Símbolo de conexión -->
+    <circle fill="none" stroke="#1B7FA8" stroke-width="2" cx="24" cy="12" r="4"/>
+    <circle fill="none" stroke="#1B7FA8" stroke-width="2" cx="26" cy="18" r="3"/>
+    <line stroke="#1B7FA8" stroke-width="2" x1="24" y1="14" x2="26" y2="16"/>
+</svg>

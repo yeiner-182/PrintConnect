@@ -1,0 +1,574 @@
+/* ============================================
+   Variables CSS
+   ============================================ */
+:root {
+    --primary-dark: #0D4A4A;
+    --primary-blue: #1B7FA8;
+    --bg-cream: #F5F2E8;
+    --text-dark: #1a1a1a;
+}
+
+/* ============================================
+   Estilos Generales
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+}
+
+/* ============================================
+   Navbar
+   ============================================ */
+.navbar {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
+    padding: 1rem 0;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white !important;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.navbar-brand img {
+    height: 45px;
+    width: 45px;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.9) !important;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.btn-login, .btn-register {
+    border-radius: 25px;
+    padding: 8px 25px;
+    margin: 0 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: white;
+    color: var(--primary-dark);
+}
+
+.btn-register {
+    background-color: white;
+    color: var(--primary-dark);
+    border: 2px solid white;
+}
+
+.btn-register:hover {
+    background-color: transparent;
+    color: white;
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
+    color: white;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><path d="M0 0L50 50M50 0L100 50M0 50L50 100M50 50L100 100" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>');
+    opacity: 0.3;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    opacity: 0.95;
+}
+
+.hero-image {
+    max-width: 400px;
+    width: 100%;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+}
+
+.btn-download {
+    background-color: white;
+    color: var(--primary-dark);
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-download:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* ============================================
+   Features Section
+   ============================================ */
+.features-section {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 60px;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 30px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2rem;
+    color: white;
+}
+
+.feature-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+}
+
+.feature-description {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ============================================
+   About Section
+   ============================================ */
+.about-section {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.about-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.about-subtitle {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+.value-card {
+    background-color: var(--bg-cream);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.value-icon {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.value-card h5 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.value-card p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.stats-section {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
+    padding: 40px;
+    border-radius: 20px;
+    color: white;
+}
+
+.stat-card {
+    padding: 20px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 0;
+    color: white;
+}
+
+/* ============================================
+   Contact Section
+   ============================================ */
+.contact-section {
+    padding: 80px 0;
+    background-color: var(--bg-cream);
+}
+
+.contact-info {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.contact-subtitle {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    margin-right: 15px;
+    min-width: 30px;
+}
+
+/* ============================================
+   Auth Section (Login/Register)
+   ============================================ */
+.auth-section {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    background-color: var(--bg-cream);
+}
+
+.auth-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header i {
+    font-size: 3rem;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.auth-header h2 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.auth-header p {
+    color: #666;
+    margin-bottom: 0;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-footer p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.auth-footer a {
+    color: var(--primary-blue);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+.forgot-password {
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   Download Section
+   ============================================ */
+.download-section {
+    background-color: var(--bg-cream);
+    padding: 80px 0;
+}
+
+.download-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.download-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.download-icon {
+    font-size: 4rem;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+}
+
+.system-requirements {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 4px solid var(--primary-blue);
+}
+
+.system-requirements h5 {
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+}
+
+.system-requirements ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+
+.system-requirements li {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+footer {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #0a3333 100%);
+    color: white;
+    padding: 60px 0 20px;
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: white;
+    padding-left: 5px;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    color: var(--primary-blue);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+}
+
+/* ============================================
+   Form Elements
+   ============================================ */
+.form-control:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 0.2rem rgba(27, 127, 168, 0.25);
+}
+
+.btn-primary-custom {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.hidden {
+    display: none !important;
+}
+
+.user-welcome {
+    color: white;
+    font-weight: 500;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .auth-card {
+        padding: 30px 20px;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-brand img {
+        height: 35px;
+        width: 35px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .btn-download {
+        font-size: 1rem;
+        padding: 12px 30px;
+    }
+
+    .feature-title {
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrintConnect - Descargas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo-svg.svg" alt="PrintConnect Logo">
+                PrintConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="acerca.html">Acerca de nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contáctanos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="descargas.html">Descargas</a>
+                    </li>
+                    <li class="nav-item hidden" id="userSection">
+                        <span class="user-welcome me-3" id="userName"></span>
+                        <button class="btn btn-login" id="logoutBtn">Cerrar Sesión</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Download Section -->
+    <section class="download-section">
+        <div class="container">
+            <h2 class="section-title">Descargar PrintConnect</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="download-card text-center">
+                        <i class="fab fa-windows download-icon"></i>
+                        <h3 class="feature-title">PrintConnect para Windows</h3>
+                        <p class="feature-description mb-4">Compatible con Windows 10 y Windows 11. Incluye todas las funciones premium.</p>
+                        <p class="text-muted mb-3">Versión 1.5.2 | 45.8 MB</p>
+                        <button class="btn btn-primary-custom btn-lg download-btn" data-platform="windows">
+                            <i class="fas fa-download me-2"></i>Descargar para Windows
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="download-card text-center">
+                        <i class="fab fa-apple download-icon"></i>
+                        <h3 class="feature-title">PrintConnect para macOS</h3>
+                        <p class="feature-description mb-4">Compatible con macOS 11 Big Sur y versiones posteriores.</p>
+                        <p class="text-muted mb-3">Versión 1.5.2 | 52.3 MB</p>
+                        <button class="btn btn-primary-custom btn-lg download-btn" data-platform="macos">
+                            <i class="fas fa-download me-2"></i>Descargar para macOS
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="download-card text-center">
+                        <i class="fab fa-linux download-icon"></i>
+                        <h3 class="feature-title">PrintConnect para Linux</h3>
+                        <p class="feature-description mb-4">Compatible con Ubuntu, Debian, Fedora y otras distribuciones principales.</p>
+                        <p class="text-muted mb-3">Versión 1.5.2 | 38.6 MB</p>
+                        <button class="btn btn-primary-custom btn-lg download-btn" data-platform="linux">
+                            <i class="fas fa-download me-2"></i>Descargar para Linux
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-8 mx-auto">
+                    <div class="system-requirements">
+                        <h5><i class="fas fa-info-circle me-2"></i>Requisitos del Sistema</h5>
+                        <ul class="mb-0">
+                            <li>Procesador de 1 GHz o superior</li>
+                            <li>1 GB de RAM (recomendado 2 GB)</li>
+                            <li>100 MB de espacio en disco</li>
+                            <li>Conexión a Internet para funciones en la nube</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">PrintConnect</h5>
+                    <p>La solución definitiva para gestión de impresión inteligente. Optimiza, programa y controla todas tus impresiones desde un solo lugar.</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Producto</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Características</a></li>
+                        <li><a href="descargas.html">Descargas</a></li>
+                        <li><a href="#">Precios</a></li>
+                        <li><a href="#">Actualizaciones</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Empresa</h5>
+                    <ul class="footer-links">
+                        <li><a href="acerca.html">Acerca de</a></li>
+                        <li><a href="#">Carreras</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Prensa</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Soporte</h5>
+                    <ul class="footer-links">
+                        <li><a href="contacto.html">Contáctanos</a></li>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Documentación</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Legal</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Términos de Uso</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">Licencias</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 PrintConnect. Todos los derechos reservados. | Desarrollado con <i class="fas fa-heart" style="color: #e74c3c;"></i> en Medellín, Colombia</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/models/User.js"></script>
+    <script src="js/models/UserRepository.js"></script>
+    <script src="js/services/AuthService.js"></script>
+    <script src="js/services/UIService.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
