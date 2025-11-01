@@ -1,0 +1,74 @@
+package com.printconnect.printconnect.model;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.IntegerProperty;
+
+public class Printer {
+    
+    private final StringProperty ip;
+    private final StringProperty nombre;
+    private final StringProperty fabricante;
+    private final StringProperty modelo;
+    private final StringProperty ubicacion;
+    private final StringProperty estado;
+    
+    // Niveles de tinta (0-100)
+    private final IntegerProperty nivelNegro;
+    private final IntegerProperty nivelCian;
+    private final IntegerProperty nivelMagenta;
+    private final IntegerProperty nivelAmarillo;
+    
+    public Printer(String ip, String fabricante, String ubicacion) {
+        this.ip = new SimpleStringProperty(ip);
+        this.nombre = new SimpleStringProperty("Impresora " + ip.substring(ip.lastIndexOf(".") + 1));
+        this.fabricante = new SimpleStringProperty(fabricante);
+        this.modelo = new SimpleStringProperty("Modelo desconocido");
+        this.ubicacion = new SimpleStringProperty(ubicacion);
+        this.estado = new SimpleStringProperty("Sin verificar");
+        
+        this.nivelNegro = new SimpleIntegerProperty(0);
+        this.nivelCian = new SimpleIntegerProperty(0);
+        this.nivelMagenta = new SimpleIntegerProperty(0);
+        this.nivelAmarillo = new SimpleIntegerProperty(0);
+    }
+    
+    // Properties para JavaFX
+    public StringProperty ipProperty() { return ip; }
+    public StringProperty nombreProperty() { return nombre; }
+    public StringProperty fabricanteProperty() { return fabricante; }
+    public StringProperty modeloProperty() { return modelo; }
+    public StringProperty ubicacionProperty() { return ubicacion; }
+    public StringProperty estadoProperty() { return estado; }
+    public IntegerProperty nivelNegroProperty() { return nivelNegro; }
+    public IntegerProperty nivelCianProperty() { return nivelCian; }
+    public IntegerProperty nivelMagentaProperty() { return nivelMagenta; }
+    public IntegerProperty nivelAmarilloProperty() { return nivelAmarillo; }
+    
+    // Getters
+    public String getIp() { return ip.get(); }
+    public String getNombre() { return nombre.get(); }
+    public String getFabricante() { return fabricante.get(); }
+    public String getModelo() { return modelo.get(); }
+    public String getUbicacion() { return ubicacion.get(); }
+    public String getEstado() { return estado.get(); }
+    public int getNivelNegro() { return nivelNegro.get(); }
+    public int getNivelCian() { return nivelCian.get(); }
+    public int getNivelMagenta() { return nivelMagenta.get(); }
+    public int getNivelAmarillo() { return nivelAmarillo.get(); }
+    
+    // Setters
+    public void setNombre(String nombre) { this.nombre.set(nombre); }
+    public void setModelo(String modelo) { this.modelo.set(modelo); }
+    public void setEstado(String estado) { this.estado.set(estado); }
+    public void setNivelNegro(int nivel) { this.nivelNegro.set(nivel); }
+    public void setNivelCian(int nivel) { this.nivelCian.set(nivel); }
+    public void setNivelMagenta(int nivel) { this.nivelMagenta.set(nivel); }
+    public void setNivelAmarillo(int nivel) { this.nivelAmarillo.set(nivel); }
+    
+    // Obtener nivel promedio de tinta
+    public int getNivelPromedioTinta() {
+        return (nivelNegro.get() + nivelCian.get() + nivelMagenta.get() + nivelAmarillo.get()) / 4;
+    }
+}

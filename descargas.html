@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrintConnect - Descargas</title>
+    <title>PrintConnect</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/services/ThemeManager.js"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -44,43 +45,61 @@
 
     <!-- Download Section -->
     <section class="download-section">
-        <div class="container">
-            <h2 class="section-title">Descargar PrintConnect</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="download-card text-center">
-                        <i class="fab fa-windows download-icon"></i>
-                        <h3 class="feature-title">PrintConnect para Windows</h3>
-                        <p class="feature-description mb-4">Compatible con Windows 10 y Windows 11. Incluye todas las funciones premium.</p>
-                        <p class="text-muted mb-3">Versión 1.5.2 | 45.8 MB</p>
-                        <button class="btn btn-primary-custom btn-lg download-btn" data-platform="windows">
-                            <i class="fas fa-download me-2"></i>Descargar para Windows
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="download-card text-center">
-                        <i class="fab fa-apple download-icon"></i>
-                        <h3 class="feature-title">PrintConnect para macOS</h3>
-                        <p class="feature-description mb-4">Compatible con macOS 11 Big Sur y versiones posteriores.</p>
-                        <p class="text-muted mb-3">Versión 1.5.2 | 52.3 MB</p>
-                        <button class="btn btn-primary-custom btn-lg download-btn" data-platform="macos">
-                            <i class="fas fa-download me-2"></i>Descargar para macOS
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="download-card text-center">
-                        <i class="fab fa-linux download-icon"></i>
-                        <h3 class="feature-title">PrintConnect para Linux</h3>
-                        <p class="feature-description mb-4">Compatible con Ubuntu, Debian, Fedora y otras distribuciones principales.</p>
-                        <p class="text-muted mb-3">Versión 1.5.2 | 38.6 MB</p>
-                        <button class="btn btn-primary-custom btn-lg download-btn" data-platform="linux">
-                            <i class="fas fa-download me-2"></i>Descargar para Linux
-                        </button>
-                    </div>
+    <div class="container">
+        <h2 class="section-title">Descargar PrintConnect</h2>
+        <div class="row g-4">
+            <!-- Windows -->
+            <div class="col-md-6">
+                <div class="download-card text-center">
+                    <i class="fab fa-windows download-icon"></i>
+                    <h3 class="feature-title">PrintConnect para Windows</h3>
+                    <p class="feature-description mb-4">
+                        Compatible con Windows 10 y Windows 11. Incluye todas las funciones premium.
+                    </p>
+                    <p class="text-muted mb-3">Versión 1.5.2 | 45.8 MB</p>
+                    <a href="https://github.com/yeiner-182/PrintConnect-JavaFX" 
+                       target="_blank" 
+                       class="btn btn-primary-custom btn-lg download-btn">
+                        <i class="fas fa-download me-2"></i>Descargar para Windows
+                    </a>
                 </div>
             </div>
+
+            <!-- macOS -->
+            <div class="col-md-6">
+                <div class="download-card text-center">
+                    <i class="fab fa-apple download-icon"></i>
+                    <h3 class="feature-title">PrintConnect para macOS</h3>
+                    <p class="feature-description mb-4">
+                        Compatible con macOS 11 Big Sur y versiones posteriores.
+                    </p>
+                    <p class="text-muted mb-3">Versión 1.5.2 | 52.3 MB</p>
+                    <a href="https://github.com/yeiner-182/PrintConnect-JavaFX" 
+                       target="_blank" 
+                       class="btn btn-primary-custom btn-lg download-btn">
+                        <i class="fas fa-download me-2"></i>Descargar para macOS
+                    </a>
+                </div>
+            </div>
+
+            <!-- Linux -->
+            <div class="col-md-12">
+                <div class="download-card text-center">
+                    <i class="fab fa-linux download-icon"></i>
+                    <h3 class="feature-title">PrintConnect para Linux</h3>
+                    <p class="feature-description mb-4">
+                        Compatible con Ubuntu, Debian, Fedora y otras distribuciones principales.
+                    </p>
+                    <p class="text-muted mb-3">Versión 1.5.2 | 38.6 MB</p>
+                    <a href="https://github.com/yeiner-182/PrintConnect-JavaFX" 
+                       target="_blank" 
+                       class="btn btn-primary-custom btn-lg download-btn">
+                        <i class="fas fa-download me-2"></i>Descargar para Linux
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
             <div class="row mt-5">
                 <div class="col-md-8 mx-auto">
                     <div class="system-requirements">
@@ -154,11 +173,12 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script src="js/models/User.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+     <script src="js/models/User.js"></script>
     <script src="js/models/UserRepository.js"></script>
     <script src="js/services/AuthService.js"></script>
-    <script src="js/services/UIService.js"></script>
+    <script src="js/services/UIService.jS"></script>
+    <script src="js/services/StorageUtil.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

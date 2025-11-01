@@ -188,7 +188,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 20px;
+    margin: 20px auto 20px;
     font-size: 2rem;
     color: white;
 }
@@ -570,5 +570,484 @@ footer {
 
     .feature-title {
         font-size: 1.2rem;
+    }
+}
+/* ============================================
+   Tarjetas de Contacto - Solo las 4 tarjetas
+   ============================================ */
+
+/* Espaciado entre las 4 tarjetas */
+.contact-section .col-md-3 {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 40px;
+}
+
+/* Estilo de cada tarjeta */
+.contact-section .card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    background: white;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Efecto hover en tarjetas */
+.contact-section .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+}
+
+/* Imágenes de perfil circulares */
+.contact-section .card-img-top {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 5px solid var(--bg-cream);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-top: 25px;
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover en imágenes */
+.contact-section .card:hover .card-img-top {
+    transform: scale(1.05);
+    border-color: var(--primary-blue);
+}
+
+/* Contenido de la tarjeta */
+.contact-section .card-body {
+    padding: 25px 20px 30px;
+}
+
+/* Nombre de la persona */
+.contact-section .card-title {
+    color: var(--primary-dark);
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+/* Cargo/puesto */
+.contact-section .card-text {
+    color: var(--primary-blue);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+/* Email */
+.contact-section .card-body p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Responsive - 2 columnas en tablets */
+@media (max-width: 991px) {
+    .contact-section .col-md-3 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+/* Responsive - 1 columna en móviles */
+@media (max-width: 576px) {
+    .contact-section .col-md-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .contact-section .card-img-top {
+        width: 120px;
+        height: 120px;
+    }
+}
+/* ============================================
+   DARK MODE + LOADING SCREEN
+   ============================================ */
+
+/* Variables para Dark Mode */
+:root {
+    --primary-dark: #0D4A4A;
+    --primary-blue: #1B7FA8;
+    --bg-cream: #F5F2E8;
+    --text-dark: #1a1a1a;
+    --bg-light: #ffffff;
+    --text-light: #333333;
+    --border-light: #e0e0e0;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    
+    /* Transiciones suaves */
+    --transition-theme: all 0.3s ease;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-cream: #1a1a1a;
+    --text-dark: #e0e0e0;
+    --bg-light: #2d2d2d;
+    --text-light: #e0e0e0;
+    --border-light: #404040;
+    --shadow-light: rgba(255, 255, 255, 0.05);
+}
+
+/* Aplicar transiciones a todo */
+body {
+    transition: var(--transition-theme);
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+}
+
+/* ============================================
+   LOADING SCREEN PERSONALIZADO
+   ============================================ */
+
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#loadingScreen.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Logo animado del loading */
+.loading-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 30px;
+    animation: pulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+/* Spinner de carga */
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 25px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Texto del loading */
+.loading-text {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Subtexto del loading */
+.loading-subtext {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+/* Barra de progreso */
+.loading-progress {
+    width: 300px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.loading-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, white, rgba(255, 255, 255, 0.7));
+    border-radius: 10px;
+    width: 0%;
+    animation: loadProgress 2s ease-in-out forwards;
+}
+
+@keyframes loadProgress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* ============================================
+   TOGGLE DARK MODE (Botón Switch)
+   ============================================ */
+
+.theme-toggle-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9998;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 8px 15px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .theme-toggle {
+    background: var(--bg-light);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Switch del toggle */
+.theme-switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background: #ccc;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+body.dark-mode .theme-switch {
+    background: var(--primary-blue);
+}
+
+.theme-switch::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    top: 3px;
+    left: 3px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .theme-switch::before {
+    transform: translateX(24px);
+}
+
+/* Iconos del toggle */
+.theme-icon {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.theme-icon.sun {
+    color: #FDB813;
+}
+
+.theme-icon.moon {
+    color: #6B7280;
+}
+
+body.dark-mode .theme-icon.sun {
+    color: #6B7280;
+}
+
+body.dark-mode .theme-icon.moon {
+    color: #F59E0B;
+}
+
+/* ============================================
+   DARK MODE - Estilos Específicos
+   ============================================ */
+
+/* Navbar en dark mode */
+body.dark-mode .navbar {
+    background: linear-gradient(135deg, #0a2525 0%, #0d3d4a 100%);
+}
+
+/* Cards en dark mode */
+body.dark-mode .feature-card,
+body.dark-mode .value-card,
+body.dark-mode .download-card,
+body.dark-mode .contact-info,
+body.dark-mode .auth-card,
+body.dark-mode .contact-section .card {
+    background: var(--bg-light);
+    color: var(--text-light);
+    box-shadow: 0 5px 20px var(--shadow-light);
+}
+
+/* Secciones en dark mode */
+body.dark-mode .features-section,
+body.dark-mode .about-section {
+    background-color: #242424;
+}
+
+body.dark-mode .contact-section,
+body.dark-mode .download-section,
+body.dark-mode .auth-section {
+    background-color: var(--bg-cream);
+}
+
+/* Títulos en dark mode */
+body.dark-mode .section-title,
+body.dark-mode .feature-title,
+body.dark-mode .about-subtitle,
+body.dark-mode .contact-subtitle,
+body.dark-mode .card-title,
+body.dark-mode .auth-header h2 {
+    color: var(--text-dark);
+}
+
+/* Textos secundarios */
+body.dark-mode .feature-description,
+body.dark-mode .about-content,
+body.dark-mode .card-text,
+body.dark-mode .auth-header p,
+body.dark-mode .contact-item,
+body.dark-mode .card-body p {
+    color: #b0b0b0;
+}
+
+/* Footer en dark mode */
+body.dark-mode footer {
+    background: linear-gradient(135deg, #0a1a1a 0%, #0d2626 100%);
+}
+
+/* Form controls en dark mode */
+body.dark-mode .form-control {
+    background-color: #3a3a3a;
+    border-color: #505050;
+    color: var(--text-light);
+}
+
+body.dark-mode .form-control:focus {
+    background-color: #404040;
+    border-color: var(--primary-blue);
+    color: var(--text-light);
+}
+
+body.dark-mode .form-label {
+    color: var(--text-light);
+}
+
+/* Notificaciones en dark mode */
+body.dark-mode .notification {
+    background: var(--bg-light);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .notification-title {
+    color: var(--text-dark);
+}
+
+body.dark-mode .notification-message {
+    color: #b0b0b0;
+}
+
+/* Stats section en dark mode */
+body.dark-mode .stats-section {
+    background: linear-gradient(135deg, #0a2525, #0d3d4a);
+}
+
+/* System requirements en dark mode */
+body.dark-mode .system-requirements {
+    background-color: var(--bg-light);
+    border-left-color: var(--primary-blue);
+}
+
+body.dark-mode .system-requirements h5 {
+    color: var(--text-dark);
+}
+
+body.dark-mode .system-requirements li {
+    color: #b0b0b0;
+}
+
+/* ============================================
+   RESPONSIVE DARK MODE TOGGLE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .theme-toggle-container {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .theme-toggle {
+        padding: 6px 12px;
+        gap: 8px;
+    }
+    
+    .theme-switch {
+        width: 45px;
+        height: 24px;
+    }
+    
+    .theme-switch::before {
+        width: 18px;
+        height: 18px;
+    }
+    
+    body.dark-mode .theme-switch::before {
+        transform: translateX(21px);
+    }
+    
+    .theme-icon {
+        font-size: 1rem;
+    }
+    
+    .loading-logo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .loading-text {
+        font-size: 1rem;
+    }
+    
+    .loading-progress {
+        width: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .loading-progress {
+        width: 200px;
     }
 }

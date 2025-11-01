@@ -1,0 +1,214 @@
+package com.printconnect.printconnect;
+
+import javafx.concurrent.Task;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import com.printconnect.printconnect.model.Printer;
+import com.printconnect.printconnect.service.PrinterService;
+
+import java.io.IOException;
+
+public class PrimaryController {
+    
+    @FXML private TableView<Printer> printersTable;
+    @FXML private TableColumn<Printer, String> nombreColumn;
+    @FXML private TableColumn<Printer, String> ubicacionColumn;
+    @FXML private TableColumn<Printer, String> estadoColumn;
+    @FXML private TableColumn<Printer, String> modeloColumn;
+    @FXML private TableColumn<Printer, Void> tintaColumn;
+    @FXML private TableColumn<Printer, Void> accionesColumn;
+    @FXML private Button btnAgregar;
+    @FXML private Button btnActualizar;
+    @FXML private Button btnEliminar;
+    @FXML private Label statusLabel;
+    
+    private PrinterService printerService;
+    
+    @FXML
+    public void initialize() {
+        printerService = PrinterService.getInstance();
+        
+        nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        ubicacionColumn.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
+        estadoColumn.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        modeloColumn.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+        
+        printersTable.setItems(printerService.getPrinters());
+        
+        estadoColumn.setCellFactory(column -> new TableCell<Printer, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    Label badge = new Label(item);
+                    String style;
+                    
+                    if (item.equals("En línea")) {
+                        style = "-fx-background-color: #d1fae5; -fx-text-fill: #065f46; -fx-padding: 4 12; -fx-background-radius: 12; -fx-font-size: 11px; -fx-font-weight: bold;";
+                    } else if (item.equals("Sin conexión")) {
+                        style = "-fx-background-color: #fee2e2; -fx-text-fill: #991b1b; -fx-padding: 4 12; -fx-background-radius: 12; -fx-font-size: 11px; -fx-font-weight: bold;";
+                    } else {
+                        style = "-fx-background-color: #e5e7eb; -fx-text-fill: #64748b; -fx-padding: 4 12; -fx-background-radius: 12; -fx-font-size: 11px; -fx-font-weight: bold;";
+                    }
+                    
+                    badge.setStyle(style);
+                    setGraphic(badge);
+                    setText(null);
+                }
+            }
+        });
+        
+        tintaColumn.setCellFactory(column -> new TableCell<Printer, Void>() {
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    Printer printer = getTableView().getItems().get(getIndex());
+                    int nivelPromedio = printer.getNivelPromedioTinta();
+                    
+                    ProgressBar bar = new ProgressBar(nivelPromedio / 100.0);
+                    bar.setPrefWidth(80);
+                    bar.setPrefHeight(8);
+                    
+                    String color;
+                    if (nivelPromedio < 20) {
+                        color = "#ef4444";
+                    } else if (nivelPromedio < 50) {
+                        color = "#f59e0b";
+                    } else {
+                        color = "#10b981";
+                    }
+                    
+                    bar.setStyle("-fx-accent: " + color + ";");
+                    
+                    Label percentage = new Label(nivelPromedio + "%");
+                    percentage.setStyle("-fx-font-size: 11px; -fx-text-fill: #64748b; -fx-font-weight: 600;");
+                    
+                    HBox hbox = new HBox(8, bar, percentage);
+                    hbox.setStyle("-fx-alignment: center-left;");
+                    setGraphic(hbox);
+                }
+            }
+        });
+        
+        accionesColumn.setCellFactory(column -> new TableCell<Printer, Void>() {
+            private final Button btnAdmin = new Button("Administrar");
+            
+            {
+                btnAdmin.setStyle("-fx-background-color: transparent; -fx-text-fill: #3b82f6; -fx-cursor: hand; -fx-font-size: 12px; -fx-underline: true;");
+                btnAdmin.setOnAction(event -> {
+                    Printer printer = getTableView().getItems().get(getIndex());
+                    showAlert("Info", "Administrar: " + printer.getNombre(), Alert.AlertType.INFORMATION);
+                });
+            }
+            
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(btnAdmin);
+                }
+            }
+        });
+        
+        updateStatusLabel();
+    }
+    
+    @FXML
+    private void handleAgregarImpresora() throws IOException {
+        App.setRoot("secondary");
+    }
+    
+     @FXML
+    private void switchToSecondary() throws IOException {
+        App.setRoot("secondary");
+    }
+    
+     @FXML
+    private void switchToPrimary() throws IOException {
+        App.setRoot("primary");
+    }
+    
+    
+    @FXML
+    private void handleActualizarEstado() {
+        if (printersTable.getItems().isEmpty()) {
+            showAlert("Advertencia", "No hay impresoras registradas", Alert.AlertType.WARNING);
+            return;
+        }
+        
+        btnActualizar.setDisable(true);
+        statusLabel.setText("Actualizando estado de impresoras...");
+        
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                printerService.updateAllPrinterStatus();
+                return null;
+            }
+            
+            @Override
+            protected void succeeded() {
+                btnActualizar.setDisable(false);
+                updateStatusLabel();
+                printersTable.refresh();
+            }
+            
+            @Override
+            protected void failed() {
+                btnActualizar.setDisable(false);
+                statusLabel.setText("Error al actualizar");
+            }
+        };
+        
+        new Thread(task).start();
+    }
+    
+    @FXML
+    private void handleEliminarImpresora() {
+        Printer selected = printersTable.getSelectionModel().getSelectedItem();
+        
+        if (selected == null) {
+            showAlert("Advertencia", "Seleccione una impresora para eliminar", Alert.AlertType.WARNING);
+            return;
+        }
+        
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Confirmar eliminación");
+        confirmacion.setHeaderText("¿Eliminar impresora?");
+        confirmacion.setContentText("IP: " + selected.getIp() + " - " + selected.getNombre());
+        
+        confirmacion.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                printerService.removePrinter(selected);
+                updateStatusLabel();
+            }
+        });
+    }
+    
+    private void updateStatusLabel() {
+        int total = printerService.getPrinters().size();
+        long online = printerService.getPrinters().stream()
+                .filter(p -> p.getEstado().equals("En línea"))
+                .count();
+        
+        statusLabel.setText(String.format("Total: %d impresoras | En línea: %d", total, online));
+    }
+    
+    private void showAlert(String title, String content, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+}

@@ -1,0 +1,192 @@
+package com.printconnect.printconnect;
+
+import java.io.IOException;
+import javafx.concurrent.Task;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
+
+
+
+import javafx.concurrent.Task;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import com.printconnect.printconnect.model.Printer;
+import com.printconnect.printconnect.service.PrinterService;
+
+import java.io.IOException;
+
+public class SecondaryController {
+    
+    @FXML private TextField ipField;
+    @FXML private ComboBox<String> fabricanteCombo;
+    @FXML private TextField ubicacionField;
+    @FXML private ProgressBar progressNegro;
+    @FXML private ProgressBar progressCian;
+    @FXML private ProgressBar progressMagenta;
+    @FXML private ProgressBar progressAmarillo;
+    @FXML private Label labelNegro;
+    @FXML private Label labelCian;
+    @FXML private Label labelMagenta;
+    @FXML private Label labelAmarillo;
+    @FXML private Button btnAgregar;
+    @FXML private Label lblTotalImpresoras;
+    
+    private PrinterService printerService;
+    
+    @FXML
+    public void initialize() {
+        printerService = PrinterService.getInstance();
+        
+        fabricanteCombo.getItems().addAll(
+            "HP", "Epson", "Canon", "Brother", "Xerox", 
+            "Ricoh", "Kyocera", "Samsung", "Lexmark", "Otro"
+        );
+        
+        fabricanteCombo.getSelectionModel().selectFirst();
+        updatePrinterCount();
+        resetInkLevels();
+    }
+    
+    @FXML
+    private void handleAgregar() {
+        String ip = ipField.getText().trim();
+        String fabricante = fabricanteCombo.getValue();
+        String ubicacion = ubicacionField.getText().trim();
+        
+        if (ip.isEmpty()) {
+            showAlert("Error", "Ingrese una dirección IP", Alert.AlertType.ERROR);
+            return;
+        }
+        
+        if (!isValidIP(ip)) {
+            showAlert("Error", "La dirección IP no es válida", Alert.AlertType.ERROR);
+            return;
+        }
+        
+        if (ubicacion.isEmpty()) {
+            showAlert("Error", "Ingrese una ubicación", Alert.AlertType.ERROR);
+            return;
+        }
+        
+        boolean exists = printerService.getPrinters().stream()
+                .anyMatch(p -> p.getIp().equals(ip));
+        
+        if (exists) {
+            showAlert("Error", "Ya existe una impresora con esta IP", Alert.AlertType.ERROR);
+            return;
+        }
+        
+        btnAgregar.setDisable(true);
+        btnAgregar.setText("Conectando a la impresora...");
+        
+        Printer newPrinter = new Printer(ip, fabricante, ubicacion);
+        
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                printerService.addPrinter(newPrinter);
+                return null;
+            }
+            
+            @Override
+            protected void succeeded() {
+                updateInkLevelsDisplay(newPrinter);
+                updatePrinterCount();
+                
+                btnAgregar.setDisable(false);
+                btnAgregar.setText("+ Agregar Impresora");
+                
+                showAlert("Éxito", 
+                    "Impresora agregada correctamente\n\n" +
+                    "IP: " + newPrinter.getIp() + "\n" +
+                    "Modelo: " + newPrinter.getModelo() + "\n" +
+                    "Estado: " + newPrinter.getEstado(), 
+                    Alert.AlertType.INFORMATION);
+                
+                clearForm();
+            }
+            
+            @Override
+            protected void failed() {
+                btnAgregar.setDisable(false);
+                btnAgregar.setText("+ Agregar Impresora");
+                showAlert("Error", "No se pudo conectar a la impresora", Alert.AlertType.ERROR);
+            }
+        };
+        
+        new Thread(task).start();
+    }
+    
+    @FXML
+    private void handleCancelar() throws IOException {
+        switchToPrimary();
+    }
+    
+    @FXML
+    private void switchToSecondary() throws IOException {
+        App.setRoot("secondary");
+    }
+  
+    
+    @FXML
+    private void switchToPrimary() throws IOException {
+        App.setRoot("primary");
+    }
+    
+    private void updateInkLevelsDisplay(Printer printer) {
+        progressNegro.setProgress(printer.getNivelNegro() / 100.0);
+        progressCian.setProgress(printer.getNivelCian() / 100.0);
+        progressMagenta.setProgress(printer.getNivelMagenta() / 100.0);
+        progressAmarillo.setProgress(printer.getNivelAmarillo() / 100.0);
+        
+        labelNegro.setText(printer.getNivelNegro() + "%");
+        labelCian.setText(printer.getNivelCian() + "%");
+        labelMagenta.setText(printer.getNivelMagenta() + "%");
+        labelAmarillo.setText(printer.getNivelAmarillo() + "%");
+    }
+    
+    private void resetInkLevels() {
+        progressNegro.setProgress(0.75);
+        progressCian.setProgress(0.40);
+        progressMagenta.setProgress(0.60);
+        progressAmarillo.setProgress(0.90);
+        
+        labelNegro.setText("75%");
+        labelCian.setText("40%");
+        labelMagenta.setText("60%");
+        labelAmarillo.setText("90%");
+    }
+    
+    private void updatePrinterCount() {
+        int count = printerService.getPrinters().size();
+        if (lblTotalImpresoras != null) {
+            lblTotalImpresoras.setText(String.valueOf(count));
+        }
+    }
+    
+    private void clearForm() {
+        ipField.clear();
+        ubicacionField.clear();
+        fabricanteCombo.getSelectionModel().selectFirst();
+        resetInkLevels();
+    }
+    
+    private boolean isValidIP(String ip) {
+        String pattern = "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}" +
+                         "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
+        return ip.matches(pattern);
+    }
+    
+    private void showAlert(String title, String content, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+}

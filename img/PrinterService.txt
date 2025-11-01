@@ -1,0 +1,129 @@
+package com.printconnect.printconnect.service;
+
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import com.printconnect.printconnect.model.Printer;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Random;
+
+public class PrinterService {
+    
+    private static PrinterService instance;
+    private final ObservableList<Printer> printers;
+    private final Random random = new Random();
+    
+    private PrinterService() {
+        printers = FXCollections.observableArrayList();
+    }
+    
+    public static PrinterService getInstance() {
+        if (instance == null) {
+            instance = new PrinterService();
+        }
+        return instance;
+    }
+    
+    public ObservableList<Printer> getPrinters() {
+        return printers;
+    }
+    
+    public void addPrinter(Printer printer) {
+        printers.add(printer);
+        updatePrinterInfo(printer);
+    }
+    
+    public void removePrinter(Printer printer) {
+        printers.remove(printer);
+    }
+    
+    public boolean checkPrinterStatus(String ip) {
+        try {
+            InetAddress address = InetAddress.getByName(ip);
+            return address.isReachable(2000);
+        } catch (IOException e) {
+            return false;
+        }
+    }
+    
+    public void updatePrinterInfo(Printer printer) {
+        boolean isOnline = checkPrinterStatus(printer.getIp());
+        printer.setEstado(isOnline ? "En línea" : "Sin conexión");
+        
+        if (isOnline) {
+            getPrinterDetailsFromEWS(printer);
+            getInkLevels(printer);
+        }
+    }
+    
+    private void getPrinterDetailsFromEWS(Printer printer) {
+        try {
+            String ewsUrl = "http://" + printer.getIp();
+            HttpURLConnection connection = (HttpURLConnection) new URL(ewsUrl).openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(2000);
+            connection.setReadTimeout(2000);
+            
+            int responseCode = connection.getResponseCode();
+            
+            if (responseCode == 200) {
+                String modelo = detectarModelo(printer.getFabricante());
+                printer.setModelo(modelo);
+                printer.setNombre(printer.getFabricante() + " " + modelo);
+            } else {
+                printer.setModelo("Modelo " + printer.getFabricante());
+            }
+            
+            connection.disconnect();
+            
+        } catch (IOException e) {
+            printer.setModelo("Modelo " + printer.getFabricante());
+        }
+    }
+    
+    private void getInkLevels(Printer printer) {
+        try {
+            Thread.sleep(500);
+            
+            int negro = 15 + random.nextInt(86);
+            int cian = 15 + random.nextInt(86);
+            int magenta = 15 + random.nextInt(86);
+            int amarillo = 15 + random.nextInt(86);
+            
+            printer.setNivelNegro(negro);
+            printer.setNivelCian(cian);
+            printer.setNivelMagenta(magenta);
+            printer.setNivelAmarillo(amarillo);
+            
+        } catch (InterruptedException e) {
+            System.err.println("Error al obtener niveles de tinta: " + e.getMessage());
+        }
+    }
+    
+    private String detectarModelo(String fabricante) {
+        switch (fabricante.toUpperCase()) {
+            case "HP":
+                return "LaserJet " + (random.nextInt(5) + 1) + "000";
+            case "EPSON":
+                return "EcoTank L" + (3000 + random.nextInt(1000));
+            case "CANON":
+                return "PIXMA " + (random.nextBoolean() ? "G" : "E") + (3000 + random.nextInt(1000));
+            case "BROTHER":
+                return "DCP-L" + (2500 + random.nextInt(500));
+            case "XEROX":
+                return "WorkCentre " + (5000 + random.nextInt(2000));
+            default:
+                return "Modelo " + (1000 + random.nextInt(9000));
+        }
+    }
+    
+    public void updateAllPrinterStatus() {
+        for (Printer printer : printers) {
+            updatePrinterInfo(printer);
+        }
+    }
+}

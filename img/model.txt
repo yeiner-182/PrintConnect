@@ -1,0 +1,12 @@
+module com.printconnect.printconnect {
+    requires javafx.controls;
+    requires javafx.fxml;
+    
+    // Abrir el paquete model para que JavaFX pueda acceder mediante reflexión
+    opens com.printconnect.printconnect.model to javafx.base;
+    opens com.printconnect.printconnect to javafx.fxml;
+    
+    exports com.printconnect.printconnect;
+    exports com.printconnect.printconnect.model;
+    exports com.printconnect.printconnect.service;
+}
